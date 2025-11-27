@@ -19,7 +19,7 @@ function cosineSimilarity(vectorA, vectorB) {
 
     console.log(similarity);
     // send the similarity to FileMaker
-    window.FileMaker.PerformScriptWithOption("search", similarity, 0);
+    return similarity;
 
 }
 
@@ -46,5 +46,7 @@ function normalizeVector(v) {
     // avoid division by zero (rare but possible with empty/zero vector)
     if (mag === 0) return v.map(() => 0);
 
-    return window.FileMaker.PerformScriptWithOption("search", {normalizeVector:v.map(x => x / mag)}, 0);
+    return v.map(x => x / mag);
 }
+
+module.exports = { cosineSimilarity, normalize, normalizeVector };
